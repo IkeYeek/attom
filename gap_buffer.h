@@ -14,7 +14,7 @@
  *
  * when inserting a character, we just increment the gap_start
  * when deleting a character, we just decrement the gap_start
-* when moving
+ * when moving
  */
 struct GapBuffer {
   char* buffer;
