@@ -23,7 +23,7 @@ struct GapBuffer* gap_buffer_create() {
 }
 
 void gap_buffer_insert(struct GapBuffer* gb, int ch) {
-  if (gb->gap_end - gb->gap_start > 0) {
+  if (gb->gap_end == gb->gap_start + 1) {
     gb->buffer = realloc(gb->buffer, (sizeof(char) * gb->size + DEFAULT_GAP) + 1);
     memmove(gb->buffer + gb->cursor_pos + DEFAULT_GAP, gb->buffer + gb->cursor_pos, gb->size - gb->cursor_pos);
     gb->size += DEFAULT_GAP;
