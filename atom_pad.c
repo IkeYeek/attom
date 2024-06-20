@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "gap_buffer.h"
-#include "atom_pad.h"
+#include "attom_pad.h"
 
 struct AttomPad* attom_pad_create() {
   struct AttomPad* ap = calloc(1, sizeof(struct AttomPad));
@@ -25,7 +25,6 @@ struct AttomPad* attom_pad_load_file(char* path) {
     exit(EXIT_FAILURE);
   }
   struct AttomPad* ap = attom_pad_create();
-  FILE *f = fopen("textfile.txt", "rb");
   fseek(f, 0, SEEK_END);
   long fsize = ftell(f);
   fseek(f, 0, SEEK_SET);  /* same as rewind(f); */
@@ -59,7 +58,7 @@ struct AttomPad* attom_pad_save(struct AttomPad* ap) {
     shift = ap->buffer->gap_start;
   }
   memcpy(clean_buffer + shift, ap->buffer + ap->buffer->gap_end, ap->buffer->size - ap->buffer->gap_end - ap->buffer->gap_start - shift);
-  fwrite(clean_buffer, sizeof(char), ap->ap->buffer->size - ap->buffer->gap_end - ap->buffer->gap_start, f);
+  fwrite(clean_buffer, sizeof(char), ap->buffer->size - ap->buffer->gap_end - ap->buffer->gap_start, f);
   free(clean_buffer);
   fclose(f);
 }
